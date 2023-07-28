@@ -1,0 +1,30 @@
+
+
+<div style="background-image: url(<%= @garden.garden_banner_url %>); height: 50vh; background-position: cover;" class="container">
+  <h1 class="mt-5 m-auto w-50 text-center text-white" ><%= @garden.name %></h1>
+</div>
+
+<div>
+  <%= link_to "Edit this garden", edit_garden_path(@garden) %> |
+  <%= link_to "Back to gardens", gardens_path %>
+
+  <%= button_to "Destroy this garden", @garden, method: :delete %>
+</div>
+
+<div class="container bg bg-primary">
+    <% @garden.plants.each do |plant| %>
+      <div>
+        <%= plant.name %>
+        <%= plant.plant_img %>
+      </div>
+    <% end %>
+</div>
+
+<div class="container">
+  <%= simple_form_for [@garden, @plant] do |f|%>
+    <%= f.input :name %>
+    <%= f.input :plant_img %>
+    
+    <%= f.submit %>
+  <% end %>
+</div>
